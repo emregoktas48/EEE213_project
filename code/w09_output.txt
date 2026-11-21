@@ -1,0 +1,61 @@
+== 3.1 Size and completeness ==
+rows: 9568, columns: 5
+columns: AT (°C), V (cm Hg), AP (mbar), RH (%), PE (MW)
+missing values: 0
+exact duplicate rows (extra copies): 41
+
+== 3.2 Minimum and maximum ==
+AT: 1.81 - 37.11 °C
+V: 25.36 - 81.56 cm Hg
+AP: 992.89 - 1033.30 mbar
+RH: 25.56 - 100.16 %
+PE: 420.26 - 495.76 MW
+
+== 3.3 Split (all rows kept) ==
+training rows: 7654, test rows: 1914
+(separate experiment) rows after removing duplicates: 9527
+
+== 4.1 Summary statistics (all 9568 rows) ==
+AT: mean 19.65, median 20.34, std 7.45 °C
+PE: mean 454.37, median 451.55, std 17.07 MW
+
+== 4.2 Correlation with PE (all rows) ==
+r(AT, PE) = -0.948
+r(V, PE) = -0.870
+r(AP, PE) = 0.518
+r(RH, PE) = 0.390
+strongest: AT (r = -0.948)
+
+== 5.1 Baseline ==
+training mean of PE: 454.44 MW
+baseline test MAE: 14.72 MW
+
+== 5.2 Straight lines PE = a*x + b (fit on training rows) ==
+AT: a = -2.1750 MW/°C, b = 497.13 MW, test MAE = 4.33 MW
+V: a = -1.1677 MW/cm Hg, b = 517.78 MW, test MAE = 6.49 MW
+AP: a = 1.4923 MW/mbar, b = -1057.70 MW, test MAE = 11.99 MW
+RH: a = 0.4490 MW/%, b = 421.54 MW, test MAE = 12.95 MW
+
+rows with RH > 100 % (physically impossible): 55 (37 in training part, 18 in test part)
+
+== Separate experiment: rows with RH > 100 % removed ==
+training rows: 7617, test rows: 1896
+baseline: training mean 454.43 MW, test MAE 14.78 MW
+line from AT: a = -2.1764, b = 497.19, test MAE = 4.33 MW
+line from V: a = -1.1692, b = 517.89, test MAE = 6.50 MW
+
+== Separate experiment: exact duplicates removed (first copy kept) ==
+training rows: 7630, test rows: 1897
+baseline: training mean 454.42 MW, test MAE 14.66 MW
+line from AT: a = -2.1737, b = 497.10, test MAE = 4.33 MW
+line from V: a = -1.1680, b = 517.76, test MAE = 6.46 MW
+
+== Separate experiment: RH > 100 % and duplicates removed ==
+training rows: 7593, test rows: 1879
+baseline: training mean 454.41 MW, test MAE 14.71 MW
+line from AT: a = -2.1752, b = 497.15, test MAE = 4.32 MW
+line from V: a = -1.1695, b = 517.87, test MAE = 6.47 MW
+
+== 5.5 One prediction checked by hand ==
+file line: 7656 (header is line 1)
+V = 35.77 cm Hg; predicted = -1.1677*35.77 + 517.78 = 476.01 MW; true = 483.12 MW; absolute error = 7.11 MW

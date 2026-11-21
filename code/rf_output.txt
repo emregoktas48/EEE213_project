@@ -1,0 +1,26 @@
+[test] baseline (training mean 454.44 MW): MAE 14.72 MW
+
+[validation] number of trees -> CV MAE (MW)
+  n_estimators=   1: 3.47
+  n_estimators=  10: 2.61
+  n_estimators=  50: 2.48
+  n_estimators= 100: 2.46
+  n_estimators= 300: 2.45
+
+[validation] max_depth -> CV MAE (MW)
+  max_depth=   2: 4.57
+  max_depth=   5: 3.24
+  max_depth=  10: 2.65
+  max_depth=None: 2.46
+
+[validation] chosen: n_estimators=300, {'max_depth': None, 'min_samples_leaf': 1}, CV MAE 2.45 MW
+[training]   MAE 0.87 MW
+[test]       MAE 2.32 MW
+
+Feature importance (mean decrease in impurity):
+  AT: 0.901
+  V: 0.061
+  AP: 0.019
+  RH: 0.018
+
+Extrapolation check: AT = 45 °C -> predicted 434.48 MW (training PE minimum 421.57 MW)
